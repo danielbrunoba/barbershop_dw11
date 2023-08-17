@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 sealed class UserModel {
   final int id;
   final String name;
@@ -21,7 +23,7 @@ sealed class UserModel {
 
 class UserModelADM extends UserModel {
   final List<String>? workDays;
-  final List<String>? workHours;
+  final List<int>? workHours;
   UserModelADM({
     required super.id,
     required super.name,

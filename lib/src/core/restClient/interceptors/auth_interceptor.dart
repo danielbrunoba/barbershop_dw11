@@ -19,5 +19,6 @@ class AuthInterceptor extends Interceptor {
         authHeaderKey: 'Bearer ${sp.getString(LocalStorageKeys.accessToken)}'
       });
     }
+    return handler.next(options);
   }
 }
