@@ -9,6 +9,14 @@ sealed class UserModel {
     required this.email,
     this.avatar,
   });
+
+  factory UserModel.fromMap(Map<String, dynamic> json) {
+    return switch (json['profile']) {
+      'ADM' => UserModelADM.fromMap(json),
+      'EMPLOYEE' => UserModelEmployee.fromMap(json),
+      _=> throw ArgumentError('User profile not found'),
+    };
+  }
 }
 
 class UserModelADM extends UserModel {
@@ -67,7 +75,6 @@ class UserModelEmployee extends UserModel {
         'barbershop_id': final int barbershopId,
         'work_days': final List workDays,
         'work_hours': final List workHours,
-
       } =>
         UserModelEmployee(
           id: id,
@@ -77,7 +84,6 @@ class UserModelEmployee extends UserModel {
           barbershopId: barbershopId,
           workDays: workDays.cast<String>(),
           workHours: workHours.cast(),
-          
         ),
       _ => throw ArgumentError('Invalid Json'),
     };
