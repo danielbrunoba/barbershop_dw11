@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 sealed class UserModel {
   final int id;
   final String name;
